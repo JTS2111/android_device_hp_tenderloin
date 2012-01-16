@@ -19,20 +19,19 @@ TARGET_HAVE_HDMI_OUT := true
 TARGET_USES_OVERLAY := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_HAVE_TSLIB := false
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp -Idevice/hp/tenderloin/include
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp -Idevice/hp/tenderloin/include
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
-#BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_HARDWARE := true
 
 # Wifi related defines
-BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := ar6000
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/ar6000.ko"
-#WIFI_DRIVER_FW_STA_PATH     := "/system/etc/firmware/fw_bcm4329.bin"
-#WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
-#WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
-WIFI_DRIVER_MODULE_NAME     := "ar6000"
+BOARD_WPA_SUPPLICANT_DRIVER     := WEXT
+WPA_SUPPLICANT_VERSION          := VER_0_6_X
+BOARD_WLAN_DEVICE               := ar6000
+WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/ar6000.ko"
+WIFI_DRIVER_MODULE_NAME         := "ar6000"
+WIFI_SDIO_IF_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
+WIFI_SDIO_IF_DRIVER_MODULE_NAME := "librasdioif"
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -43,6 +42,7 @@ BOARD_EGL_CFG := device/hp/tenderloin/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_NO_RGBX_8888 := true
 BOARD_USES_OVERLAY := true
+TARGET_USES_C2D_COMPOSITION := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 
 # Kernel options
