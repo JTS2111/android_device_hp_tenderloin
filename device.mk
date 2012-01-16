@@ -77,14 +77,26 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVdec \
-    hwcomposer.default \
     com.android.future.usb.accessory \
     ts_srv 
 #    libOmxCore \
 #    libaudio 
 
+# Additional packages from QCOM.
+PRODUCT_PACKAGES += \
+    libcopybit \
+    libmemalloc \
+    libgenlock \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer \
+    gralloc.msm8660 \
+    hwcomposer.msm8660 \
+    copybit.msm8660 \
+    sensors.msm8660
+
 # This is a medium density device.
-PRODUCT_AAPT_CONFIG := normal mdpi hdpi
+PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 # Prebuilt kernel.
