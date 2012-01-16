@@ -28,6 +28,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Inherit from those products. Most specific first.
 $(call inherit-product, build/target/product/full_base.mk)
 
+# Inherit all languages.
+$(call inherit-product, build/target/product/languages_full.mk)
+
 # Inherit from tenderloin device
 $(call inherit-product, device/hp/tenderloin/device.mk)
 

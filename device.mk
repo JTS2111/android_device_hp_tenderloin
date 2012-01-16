@@ -83,9 +83,9 @@ PRODUCT_PACKAGES += \
 #    libOmxCore \
 #    libaudio 
 
-# This is a high density device.
-PRODUCT_LOCALES += hdpi
-PRODUCT_AAPT_CONFIG := normal hdpi
+# This is a medium density device.
+PRODUCT_AAPT_CONFIG := normal mdpi hdpi
+PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 # Prebuilt kernel.
 ifeq ($(TARGET_PREBUILT_KERNEL),)
