@@ -24,6 +24,7 @@ DEVICE_PACKAGE_OVERLAYS += device/hp/tenderloin/overlay
 
 # Custom init files.
 PRODUCT_COPY_FILES += \
+    device/hp/tenderloin/init.rc:root/init.rc \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
     device/hp/tenderloin/init.tenderloin.usb.rc:root/init.tenderloin.usb.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc
@@ -69,10 +70,6 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/modules/tcp_bic.ko:system/lib/modules/tcp_bic.ko \
     device/hp/tenderloin/modules/tun.ko:system/lib/modules/tun.ko
 
-# WiFi
-PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -96,8 +93,7 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     copybit.msm8660 \
-    sensors.msm8660 \
-    Superuser
+    sensors.msm8660
 
 # This is a medium density device.
 PRODUCT_AAPT_CONFIG := normal mdpi
