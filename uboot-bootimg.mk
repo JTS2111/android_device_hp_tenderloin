@@ -96,23 +96,27 @@ ifeq ($(BOARD_USES_UBOOT_MULTIIMAGE),true)
         INTERNAL_RECOVERYIMAGE_ARGS += -e $(BOARD_UBOOT_ENTRY)
     endif
 
-    BOARD_UBOOT_LOAD := $(strip $(BOARD_UBOOT_LOAD))    
-    ifdef BOARD_UBOOT_LOAD
-        INTERNAL_RECOVERYIMAGE_ARGS += -a $(BOARD_UBOOT_LOAD)
-    endif
+# XXX somehow even though we don't define BOARD_UBOOT_LOAD, it's still
+# detected here and produces empty -a argument that confuses mkimage
+#    BOARD_UBOOT_LOAD := $(strip $(BOARD_UBOOT_LOAD))    
+#    ifdef BOARD_UBOOT_LOAD
+#        INTERNAL_RECOVERYIMAGE_ARGS += -a $(BOARD_UBOOT_LOAD)
+#    endif
+
+    recovery_kernel := $(INSTALLED_KERNEL_TARGET) # hard-coded for tenderloin
 
     INTERNAL_RECOVERYIMAGE_ARGS += -d $(strip $(recovery_kernel)):$(strip $(recovery_uboot_ramdisk))
 
-    $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKIMAGE) $(recovery_uboot_ramdisk) $(recovery_kernel)
-		$(MKIMAGE) $(INTERNAL_RECOVERYIMAGE_ARGS) $@
-		@echo ----- Made recovery uboot multiimage -------- $@
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKIMAGE) $(recovery_uboot_ramdisk) $(recovery_kernel)
+	$(MKIMAGE) $(INTERNAL_RECOVERYIMAGE_ARGS) $@
+	@echo ----- Made recovery uboot multiimage -------- $@
 
 else #!BOARD_USES_UBOOT_MULTIIMAGE
     # If we are not on a multiimage platform lets zip the kernel with the ramdisk
     # for Rom Manager
-    $(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_uboot_ramdisk) $(recovery_kernel)
-		$(hide) rm -f $@
-		zip -qDj $@ $(recovery_uboot_ramdisk) $(recovery_kernel)
-		@echo ----- Made recovery image \(zip\) -------- $@
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_uboot_ramdisk) $(recovery_kernel)
+	$(hide) rm -f $@
+	zip -qDj $@ $(recovery_uboot_ramdisk) $(recovery_kernel)
+	@echo ----- Made recovery image \(zip\) -------- $@
 
 endif

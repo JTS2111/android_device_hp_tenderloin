@@ -21,19 +21,23 @@ ifneq ($(TARGET_SIMULATOR),true)
 # hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := sensors.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE := sensors.tenderloin
+
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
-
 LOCAL_SRC_FILES := \
-	sensors.cpp \
-	SensorBase.cpp \
+	sensors.c \
+	nusensors.cpp \
 	InputEventReader.cpp \
-	AccelerometerSensor.cpp
-
-LOCAL_SHARED_LIBRARIES := liblog libcutils libdl
+	SensorBase.cpp \
+	lsm303dlh_acc.cpp \
+	lsm303dlh_mag.cpp \
+	LightSensor.cpp
+				
+LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_PRELINK_MODULE := false
 
 include $(BUILD_SHARED_LIBRARY)

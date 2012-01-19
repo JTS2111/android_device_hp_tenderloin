@@ -210,6 +210,14 @@ int gr_measure(const char *s)
     return gr_font->cwidth * strlen(s);
 }
 
+
+void gr_font_size(int *x, int *y)
+{
+    *x = gr_font->cwidth;
+    *y = gr_font->cheight;
+}
+
+
 int gr_text(int x, int y, const char *s)
 {
     GGLContext *gl = gr_context;
@@ -234,12 +242,6 @@ int gr_text(int x, int y, const char *s)
     }
 
     return x;
-}
-
-void gr_font_size(int *x, int *y)
-{
-    *x = gr_font->cwidth;
-    *y = gr_font->cheight;
 }
 
 void gr_fill(int x, int y, int w, int h)
@@ -369,6 +371,11 @@ int gr_fb_height(void)
     return gr_framebuffer[0].height;
 }
 
+gr_pixel *gr_fb_data(void)
+{
+    return (unsigned short *) gr_mem_surface.data;
+}
+
 void gr_fb_blank(bool blank)
 {
     int ret;
@@ -376,9 +383,4 @@ void gr_fb_blank(bool blank)
     ret = ioctl(gr_fb_fd, FBIOBLANK, blank ? FB_BLANK_POWERDOWN : FB_BLANK_UNBLANK);
     if (ret < 0)
         perror("ioctl(): blank");
-}
-
-gr_pixel *gr_fb_data(void)
-{
-    return (unsigned short *) gr_mem_surface.data;
 }

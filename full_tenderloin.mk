@@ -1,4 +1,5 @@
-# Copyright (C) 2011 The Android Open Source Project
+# Copyright (C) 2009 The Android Open Source Project
+# Copyright (C) 2011 Gerad Munsch <gmunsch@unforgivendevelopment.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,24 +20,15 @@
 # product configuration (apps).
 #
 
-# Property overrides.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.com.google.networklocation=1 \
-    ro.setupwizard.enable_bypass=1
-
 # Inherit from those products. Most specific first.
-$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+# This is where we'd set a backup provider if we had one
+#$(call inherit-product, device/sample/products/backup_overlay.mk)
+$(call inherit-product, device/hp/tenderloin/device_tenderloin.mk)
 
-# Inherit all languages.
-$(call inherit-product, build/target/product/languages_full.mk)
-
-# Inherit from tenderloin device
-$(call inherit-product, device/hp/tenderloin/device.mk)
-
-# Set those variables here to overwrite the inherited values.
+# Discard inherited values and use our own instead.
 PRODUCT_NAME := full_tenderloin
 PRODUCT_DEVICE := tenderloin
-PRODUCT_BRAND := HP
-PRODUCT_MODEL := HP Touchpad
-
+PRODUCT_BRAND := hp
+PRODUCT_MODEL := touchpad
+PRODUCT_MANUFACTURER := hp
