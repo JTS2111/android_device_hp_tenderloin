@@ -32,7 +32,6 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/init.tenderloin.usb.rc:root/init.tenderloin.usb.rc \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc \
-    device/hp/tenderloin/initlogo.rle:root/initlogo.rle \
     device/hp/tenderloin/prebuilt/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/hp/tenderloin/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/hp/tenderloin/HPTouchpad.idc:system/usr/idc/HPTouchpad.idc
@@ -76,7 +75,7 @@ PRODUCT_PACKAGES += \
     libQcomUI
 
 # Audio
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils \
     audio.primary.tenderloin \
@@ -155,7 +154,7 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/media_profiles.xml:/system/etc/media_profiles.xml \
     device/hp/tenderloin/vold.fstab:system/etc/vold.fstab \
     device/hp/tenderloin/makemulti.sh:makemulti.sh \
-    device/hp/tenderloin/prebuilt/boot/moboot.splash.CyanogenMod.tga:moboot.splash.CyanogenMod.tga
+    device/hp/tenderloin/prebuilt/boot/moboot.splash.Android_4.0.3.tga:moboot.splash.Android_4.0.3.tga
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
@@ -166,5 +165,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+$(call inherit-product-if-exists, vendor/google/gapps.mk)
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full_base.mk)
