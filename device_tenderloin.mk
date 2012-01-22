@@ -92,6 +92,10 @@ PRODUCT_PACKAGES += \
     serial \
     com.android.future.usb.accessory
 
+# Superuser
+PRODUCT_PACKAGES += \
+    Superuser
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
@@ -112,7 +116,7 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
     device/hp/tenderloin/prebuilt/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
     device/hp/tenderloin/prebuilt/modules/diagchar.ko:system/lib/modules/diagchar.ko \
-    device/hp/tenderloin/prebuilt/modules/dmatest.ko:system/lib/modules/dmatest.ko \
+    device/hp/tenderloin/prebuilt/modules/dma_test.ko:system/lib/modules/dma_test.ko \
     device/hp/tenderloin/prebuilt/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
     device/hp/tenderloin/prebuilt/modules/lcd.ko:system/lib/modules/lcd.ko \
     device/hp/tenderloin/prebuilt/modules/ntfs.ko:system/lib/modules/ntfs.ko \
