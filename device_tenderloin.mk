@@ -105,12 +105,21 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/usr/keylayout/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
     device/hp/tenderloin/prebuilt/bluetooth/hciattach:system/bin/hciattach_awesome 
     
-# Wifi Modules
+# Kernel Modules
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/wifi/ar6000.ko:system/lib/modules/ar6000.ko \
+    device/hp/tenderloin/prebuilt/wifi/librasdioif.ko:system/lib/modules/librasdioif.ko \
     device/hp/tenderloin/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
+    device/hp/tenderloin/prebuilt/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
+    device/hp/tenderloin/prebuilt/modules/diagchar.ko:system/lib/modules/diagchar.ko \
+    device/hp/tenderloin/prebuilt/modules/dmatest.ko:system/lib/modules/dmatest.ko \
+    device/hp/tenderloin/prebuilt/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
+    device/hp/tenderloin/prebuilt/modules/lcd.ko:system/lib/modules/lcd.ko \
     device/hp/tenderloin/prebuilt/modules/ntfs.ko:system/lib/modules/ntfs.ko \
     device/hp/tenderloin/prebuilt/modules/nls_utf8.ko:system/lib/modules/nls_utf8.ko \
+    device/hp/tenderloin/prebuilt/modules/oprofile.ko:system/lib/modules/oprofile.ko \
+    device/hp/tenderloin/prebuilt/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
+    device/hp/tenderloin/prebuilt/modules/tcp_bic.ko:system/lib/modules/tcp_bic.ko \
     device/hp/tenderloin/prebuilt/modules/tun.ko:system/lib/modules/tun.ko
 
 #Wifi Firmware
