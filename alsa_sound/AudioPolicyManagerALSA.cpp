@@ -20,7 +20,7 @@
 #include "AudioPolicyManagerALSA.h"
 #include <media/mediarecorder.h>
 
-namespace android {
+namespace android_audio_legacy {
 
 status_t AudioPolicyManagerALSA::setDeviceConnectionState(AudioSystem::audio_devices device,
                                                   AudioSystem::device_connection_state state,
@@ -501,7 +501,7 @@ status_t AudioPolicyManagerALSA::stopOutput(audio_io_handle_t output, AudioSyste
         }
         // store time at which the last music track was stopped - see computeVolume()
 	   if (stream == AudioSystem::MUSIC) {
-               mMusicStopTime = systemTime();
+               outputDesc->mStopTime[stream] = systemTime();
            }
            return NO_ERROR;
            } else {

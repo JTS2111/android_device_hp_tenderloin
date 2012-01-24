@@ -42,7 +42,7 @@
     if (strlen(x) + strlen(y) < ALSA_NAME_MAX) \
         strcat(x, y);
 
-namespace android
+namespace android_audio_legacy
 {
 
 // ----------------------------------------------------------------------------

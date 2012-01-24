@@ -24,6 +24,7 @@
 #include <sys/time.h>
 #include <sound/asound.h>
 #include <linux/uinput.h>
+#include <utils/threads.h>
 #include <pthread.h>
 
 #include "AudioHardwareALSA.h"
@@ -87,9 +88,6 @@ struct snd_ctl_elem_list {
 	unsigned char reserved[50];
 };
 
-namespace android
-{
-
 struct snd_ctl_elem_id *elements;
 int nelements, idle0_standalone_fd, idle0_collapse_fd, 
     idle1_standalone_fd, idle1_collapse_fd;
@@ -147,6 +145,8 @@ int write_elem(int fd, struct snd_ctl_elem_id* id, int d0, int d1, int d2)
 }
 
 // ----------------------------------------------------------------------------
+
+namespace android_audio_legacy {
 
 static int s_device_open(const hw_module_t*, const char*, hw_device_t**);
 static int s_device_close(hw_device_t*);
@@ -241,7 +241,7 @@ static alsa_handle_t _defaultsIn = {
     handle      : 0,
     format      : SND_PCM_FORMAT_S16_LE, // AudioSystem::PCM_16_BIT
     channels    : 1,
-    sampleRate  : AudioRecord::DEFAULT_SAMPLE_RATE,
+    sampleRate  : DEFAULT_SAMPLE_RATE,
     realsampleRate : 0,
     latency     : 0, // Desired Delay in usec
     bufferSize  : 0, // Desired Number of samples

@@ -33,8 +33,9 @@
 
 #include "AudioHardwareALSA.h"
 
-namespace android
+namespace android_audio_legacy
 {
+using android::AutoMutex;
 
 // ----------------------------------------------------------------------------
 
@@ -62,11 +63,6 @@ static inline uint32_t popCount(uint32_t u)
     u = ((u&0x00ff00ff) + ((u>>8)&0x00ff00ff));
     u = ( u&0x0000ffff) + (u>>16);
     return u;
-}
-
-acoustic_device_t *ALSAStreamOps::acoustics()
-{
-    return mParent->mAcousticDevice;
 }
 
 ALSAMixer *ALSAStreamOps::mixer()

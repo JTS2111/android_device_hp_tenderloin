@@ -38,14 +38,14 @@ extern "C"
     //
     // Function for dlsym() to look up for creating a new AudioHardwareInterface.
     //
-    android::AudioHardwareInterface *createAudioHardware(void) {
-        return android::AudioHardwareALSA::create();
+    android_audio_legacy::AudioHardwareInterface *createAudioHardware(void) {
+        return android_audio_legacy::AudioHardwareALSA::create();
     }
 }         // extern "C"
 
-namespace android
+namespace android_audio_legacy
 {
-
+    using android::AutoMutex;
 // ----------------------------------------------------------------------------
 
 static void ALSAErrorHandler(const char *file,
@@ -72,8 +72,7 @@ AudioHardwareInterface *AudioHardwareALSA::create() {
 }
 
 AudioHardwareALSA::AudioHardwareALSA() :
-    mALSADevice(0),
-    mAcousticDevice(0)
+    mALSADevice(0)
 {
     snd_lib_error_set_handler(&ALSAErrorHandler);
     mMixer = new ALSAMixer;
@@ -92,18 +91,6 @@ AudioHardwareALSA::AudioHardwareALSA() :
             LOGE("ALSA Module could not be opened!!!");
     } else
         LOGE("ALSA Module not found!!!");
-
-    err = hw_get_module(ACOUSTICS_HARDWARE_MODULE_ID,
-            (hw_module_t const**)&module);
-
-    if (err == 0) {
-        hw_device_t* device;
-        err = module->methods->open(module, ACOUSTICS_HARDWARE_NAME, &device);
-        if (err == 0)
-            mAcousticDevice = (acoustic_device_t *)device;
-        else
-            LOGE("Acoustics Module not found.");
-    }
 }
 
 AudioHardwareALSA::~AudioHardwareALSA()
@@ -111,8 +98,6 @@ AudioHardwareALSA::~AudioHardwareALSA()
     if (mMixer) delete mMixer;
     if (mALSADevice)
         mALSADevice->common.close(&mALSADevice->common);
-    if (mAcousticDevice)
-        mAcousticDevice->common.close(&mAcousticDevice->common);
 }
 
 status_t AudioHardwareALSA::initCheck()

@@ -75,7 +75,7 @@ PRODUCT_PACKAGES += \
     libQcomUI
 
 # Audio
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils \
     audio.primary.tenderloin \

@@ -33,8 +33,9 @@
 
 #include "AudioHardwareALSA.h"
 
-namespace android
+namespace android_audio_legacy
 {
+using android::AutoMutex;
 
 AudioStreamInALSA::AudioStreamInALSA(AudioHardwareALSA *parent,
         alsa_handle_t *handle,
@@ -43,9 +44,6 @@ AudioStreamInALSA::AudioStreamInALSA(AudioHardwareALSA *parent,
     mFramesLost(0),
     mAcoustics(audio_acoustics)
 {
-    acoustic_device_t *aDev = acoustics();
-
-    if (aDev) aDev->set_params(aDev, mAcoustics, NULL);
 }
 
 AudioStreamInALSA::~AudioStreamInALSA()
@@ -67,13 +65,6 @@ ssize_t AudioStreamInALSA::read(void *buffer, ssize_t bytes)
         mPowerLock = true;
     }
 
-    acoustic_device_t *aDev = acoustics();
-
-    // If there is an acoustics module read method, then it overrides this
-    // implementation (unlike AudioStreamOutALSA write).
-    if (aDev && aDev->read)
-        return aDev->read(aDev, buffer, bytes);
-
     snd_pcm_sframes_t n, frames = snd_pcm_bytes_to_frames(mHandle->handle, bytes);
     status_t          err;
 
@@ -83,7 +74,6 @@ ssize_t AudioStreamInALSA::read(void *buffer, ssize_t bytes)
             if (mHandle->handle) {
                 if (n < 0) {
                     n = snd_pcm_recover(mHandle->handle, n, 0);
-                    if (aDev && aDev->recover) aDev->recover(aDev, n);
                 } else
                     n = snd_pcm_prepare(mHandle->handle);
             }
@@ -105,21 +95,12 @@ status_t AudioStreamInALSA::open(int mode)
 
     status_t status = ALSAStreamOps::open(mode);
 
-    acoustic_device_t *aDev = acoustics();
-
-    if (status == NO_ERROR && aDev)
-        status = aDev->use_handle(aDev, mHandle);
-
     return status;
 }
 
 status_t AudioStreamInALSA::close()
 {
     AutoMutex lock(mLock);
-
-    acoustic_device_t *aDev = acoustics();
-
-    if (mHandle && aDev) aDev->cleanup(aDev);
 
     ALSAStreamOps::close();
 
@@ -162,9 +143,7 @@ status_t AudioStreamInALSA::setAcousticParams(void *params)
 {
     AutoMutex lock(mLock);
 
-    acoustic_device_t *aDev = acoustics();
-
-    return aDev ? aDev->set_params(aDev, mAcoustics, params) : (status_t)NO_ERROR;
+    return (status_t)NO_ERROR;
 }
 
 }       // namespace android

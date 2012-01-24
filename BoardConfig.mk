@@ -26,6 +26,8 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=59 -DQCOM_HARDWARE
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
+# Audio
+BOARD_USES_ALSA_AUDIO := true
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := ar6000
@@ -35,13 +37,6 @@ BOARD_WLAN_DEVICE           := ar6000
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/ar6000.ko"
 WIFI_DRIVER_MODULE_NAME     := "ar6000"
 BOARD_WEXT_NO_COMBO_SCAN	:= true
-
-# Audio
-BOARD_USES_AUDIO_LEGACY := false
-BOARD_USES_GENERIC_AUDIO := false
-TARGET_PROVIDES_LIBAUDIO := false
-BOARD_USES_ALSA_AUDIO := false
-BOARD_WITH_ALSA_UTILS := false
 
 #Bluetooth
 BOARD_HAVE_BLUETOOTH := true

@@ -38,9 +38,9 @@
 #define ALSA_DEFAULT_SAMPLE_RATE 44100 // in Hz
 #endif
 
-namespace android
+namespace android_audio_legacy
 {
-
+    using android::AutoMutex;
 // ----------------------------------------------------------------------------
 
 static const int DEFAULT_SAMPLE_RATE = ALSA_DEFAULT_SAMPLE_RATE;
@@ -99,13 +99,6 @@ ssize_t AudioStreamOutALSA::write(const void *buffer, size_t bytes)
         LOGE("RE-OPEN AFTER STANDBY:: took %llu msecs\n", ns2ms(delta));
        }
 
-   acoustic_device_t *aDev = acoustics();
-
-   // For output, we will pass the data on to the acoustics module, but the actual
-   // data is expected to be sent to the audio device directly as well.
-   if (aDev && aDev->write)
-       aDev->write(aDev, buffer, bytes);
-
    snd_pcm_sframes_t n;
    size_t            sent = 0;
    status_t          err;
@@ -149,7 +142,6 @@ snd_pcm_bytes_to_frames(mHandle->handle, bytes - sent));*/
            // has a bug and snd_pcm_recover() doesn't seem to handle this.
            mHandle->module->open(mHandle, mHandle->curDev, mHandle->curMode);
 
-           if (aDev && aDev->recover) aDev->recover(aDev, n);
            //bail
            if (n) return static_cast<ssize_t>(n);
        }
@@ -167,7 +159,6 @@ snd_pcm_bytes_to_frames(mHandle->handle, bytes - sent));*/
                        // an error, or -errno if the error was unrecoverable.
                        n = snd_pcm_recover(mHandle->handle, n, 1);
 
-                        if (aDev && aDev->recover) aDev->recover(aDev, n);
                                if (n) return static_cast<ssize_t>(n);
                }
            }

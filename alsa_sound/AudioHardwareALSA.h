@@ -25,9 +25,10 @@
 
 #include <hardware/hardware.h>
 
-namespace android
+namespace android_audio_legacy
 {
-
+using android::List;
+using android::Mutex;
 class AudioHardwareALSA;
 
 /**
@@ -72,29 +73,6 @@ struct alsa_device_t {
     status_t (*voicevolume)(float);
     status_t (*set)(const String8&);
     status_t (*resetDefaults)(alsa_handle_t *handle);
-};
-
-/**
- * The id of acoustics module
- */
-#define ACOUSTICS_HARDWARE_MODULE_ID    "acoustics"
-#define ACOUSTICS_HARDWARE_NAME         "acoustics"
-
-struct acoustic_device_t {
-    hw_device_t common;
-
-    // Required methods...
-    status_t (*use_handle)(acoustic_device_t *, alsa_handle_t *);
-    status_t (*cleanup)(acoustic_device_t *);
-
-    status_t (*set_params)(acoustic_device_t *, AudioSystem::audio_in_acoustics, void *);
-
-    // Optional methods...
-    ssize_t (*read)(acoustic_device_t *, void *, size_t);
-    ssize_t (*write)(acoustic_device_t *, const void *, size_t);
-    status_t (*recover)(acoustic_device_t *, int);
-
-    void *              modPrivate;
 };
 
 // ----------------------------------------------------------------------------
@@ -163,7 +141,6 @@ public:
 protected:
     friend class AudioHardwareALSA;
 
-    acoustic_device_t *acoustics();
     ALSAMixer *mixer();
 
     AudioHardwareALSA *     mParent;
@@ -282,6 +259,15 @@ public:
     // Unit: the number of input audio frames
     virtual unsigned int  getInputFramesLost() const;
 
+    virtual status_t addAudioEffect(effect_handle_t effect)
+    {
+        return BAD_VALUE;
+    }
+
+    virtual status_t removeAudioEffect(effect_handle_t effect)
+    {
+        return BAD_VALUE;
+    }
     status_t            setAcousticParams(void* params);
 
     status_t            open(int mode);
@@ -375,7 +361,6 @@ protected:
     ALSAMixer *         mMixer;
 
     alsa_device_t *     mALSADevice;
-    acoustic_device_t * mAcousticDevice;
 
     ALSAHandleList      mDeviceList;
 
