@@ -131,8 +131,9 @@ PRODUCT_COPY_FILES += \
     
 # Kernel Modules
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/prebuilt/wifi/ar6000.ko:system/lib/modules/ar6000.ko \
-    device/hp/tenderloin/prebuilt/wifi/librasdioif.ko:system/lib/modules/librasdioif.ko \
+    device/hp/tenderloin/prebuilt/wifi/ath6kl.ko:system/lib/modules/ath6kl.ko \
+    device/hp/tenderloin/prebuilt/wifi/cfg80211.ko:system/lib/modules/cfg80211.ko \
+    device/hp/tenderloin/prebuilt/wifi/compat.ko:system/lib/modules/compat.ko \
     device/hp/tenderloin/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
     device/hp/tenderloin/prebuilt/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
     device/hp/tenderloin/prebuilt/modules/diagchar.ko:system/lib/modules/diagchar.ko \
