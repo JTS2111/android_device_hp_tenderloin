@@ -48,8 +48,17 @@ on post-fs
 
 on init
 
+    # modules
+    insmod /system/lib/modules/nls_utf8.ko
+    insmod /system/lib/modules/cifs.ko
+    insmod /system/lib/modules/ntfs.ko
+    insmod /system/lib/modules/tun.ko
+    insmod /system/lib/modules/compat.ko
+    insmod /system/lib/modules/cfg80211.ko
+
+    # Bandwidth accounting
     chmod 0666 /proc/net/xt_qtaguid/ctrl
-    chmod 0660 /dev/ctp_uart
+
     # for Invense MPU3050
     chmod 0664 /dev/mpu
     chmod 0664 /dev/mpuirq
@@ -57,6 +66,8 @@ on init
     chown system system /dev/mpu
     chown system system /dev/mpuirq
     chown system system /dev/timerirq
+
+    # for LM8502
     chmod 0664 /dev/lm8502
     chmod 0664 /sys/class/leds/core_navi_left/brightness
     chmod 0664 /sys/class/leds/core_navi_right/brightness
@@ -64,10 +75,11 @@ on init
     chown system system /sys/class/leds/core_navi_left/brightness
     chown system system /sys/class/leds/core_navi_right/brightness
 
-    #  for mounting USB storage
+    # for mounting USB storage
     mkdir /mnt/usbdisk 0000 system system
 
     # For TS control
+    chmod 0660 /dev/ctp_uart
     chown system system /sys/devices/platform/cy8ctma395/vdd
     chown system system /sys/devices/platform/cy8ctma395/xres
     chown system system /sys/user_hw/pins/ctp/wake/level
@@ -94,9 +106,6 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chmod 0660                /sys/class/rfkill/rfkill1/state
-
-    chown bluetooth bluetooth /dev/rfkill
-    chmod 0660                /dev/rfkill
 
     chown bluetooth bluetooth /sys/user_hw/pins/bt/reset/level
     chown bluetooth bluetooth /sys/user_hw/pins/bt/host_wake/level
@@ -135,13 +144,6 @@ on boot
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
     write /sys/module/rpm_resources/enable_low_power/pxo 1
 
-    # modules
-    insmod /system/lib/modules/nls_utf8.ko
-    insmod /system/lib/modules/cifs.ko
-    insmod /system/lib/modules/ntfs.ko
-    insmod /system/lib/modules/tun.ko
-    insmod /system/lib/modules/compat.ko
-    insmod /system/lib/modules/cfg80211.ko
 
     # change permissions for i2c-2 device
     chmod 0660 /dev/i2c-2
