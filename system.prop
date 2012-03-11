@@ -16,8 +16,11 @@ debug.enabletr=false
 
 com.qc.hardware=true
 
+# Fix crash on older JNI apps.
+dalvik.vm.checkjni = false
+
 #c2d
-debug.composition.type=cpu
+debug.composition.type = gpu
 #ro.sf.compbypass.enable=1
 #debug.overlayui.enable=0
 
