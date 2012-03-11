@@ -112,7 +112,8 @@ PRODUCT_PACKAGES += \
     bcattach \
     serial \
     com.android.future.usb.accessory \
-    rebootcmd
+    rebootcmd \
+    Camera
 
 # Superuser
 PRODUCT_PACKAGES += \
