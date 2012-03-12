@@ -1,25 +1,25 @@
 Android Open Source Project for HP Touchpad
 ===========================================
 
-This README documents instructions to build Android for HP Touchpad.
+This README documents instructions to build Android for HP Touchpad.  
 *Last updated:* 13th March 2012
 
-Copyright (C) 2012 Wong Yong Jie
+Copyright (C) 2012 Wong Yong Jie  
 Copyright (C) 2012 The Android Open Source Project
 
 Build Requirements
 ------------------
 
-The build requirements for Android 4.0 (Ice Cream Sandwich) is considerably
+The build requirements for Android 4.0 (Ice Cream Sandwich) is considerably  
 higher than previous versions. For fast builds, powerful hardware is required.
 
-The Android build system can take advantage of multiple cores to speed up the
-build process. However, you will need to ensure that you have sufficient memory
+The Android build system can take advantage of multiple cores to speed up the  
+build process. However, you will need to ensure that you have sufficient memory  
 installed so that the build process will not trash the disk / fail.
 
 *Recommended:*
-- Core 2 Quad / Core i7 class CPUs
-- At least 8 GB of RAM
+* Core 2 Quad / Core i7 class CPUs
+* At least 8 GB of RAM
 
 *Operating system configuration:*
 Refer to [Initializing a Build Environment](http://source.android.com/source/initializing.html).
@@ -33,7 +33,8 @@ Build Instructions
 2. Copy the following local manifest to .repo/local\_manifest.xml.
 
 --- cut here ---
-`<?xml version="1.0" encoding="UTF-8"?>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
   <remote  name="github"
@@ -108,7 +109,8 @@ Build Instructions
   <project path="hardware/qcom/media" name="yjwong/android_hardware_qcom_media" remote="github" revision="ics" />
   <project path="hardware/atheros" name="yjwong/android_hardware_atheros" remote="github" revision="ics" />
 
-</manifest>`
+</manifest>
+```
 --- cut here ---
 
 3. Run `. build/envsetup.sh` to setup the build environment.
@@ -122,7 +124,7 @@ Build Instructions
 
 7. Run `make -jN otapackage` (replace N with the number of parallel jobs).
 
-At this stage, hopefully the build will proceed without any errors.
+At this stage, hopefully the build will proceed without any errors.  
 Output files will be found in out/target/product/tenderloin/full\_tenderloin-CFG.zip
 
 The resultant ZIP file is a ClockworkMod flashable ZIP.
