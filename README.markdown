@@ -17,8 +17,8 @@ The Android build system can take advantage of multiple cores to speed up the
 build process. However, you will need to ensure that you have sufficient memory  
 installed so that the build process will not trash the disk / fail.
 
-*Recommended:*
-* Core 2 Quad / Core i7 class CPUs
+*Recommended:*  
+* Core 2 Quad / Core i7 class CPUs  
 * At least 8 GB of RAM
 
 *Operating system configuration:*
@@ -33,7 +33,7 @@ Build Instructions
 2. Copy the following local manifest to .repo/local\_manifest.xml.
 
 --- cut here ---
-```xml
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
