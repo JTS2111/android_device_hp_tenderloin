@@ -85,6 +85,9 @@ BOARD_USES_UBOOT_MULTIIMAGE := true
 # use dosfsck from dosfstools
 BOARD_USES_CUSTOM_FSCK_MSDOS := true
 
+# Common Unix Printing System
+TARGET_USES_CUPS := true
+
 # Define Prebuilt kernel locations
 TARGET_PREBUILT_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
 

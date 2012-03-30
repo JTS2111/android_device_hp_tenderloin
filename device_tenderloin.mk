@@ -119,6 +119,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Superuser
 
+$(call inherit-product-if-exists, external/cups/cups.mk)
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
