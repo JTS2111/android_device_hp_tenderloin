@@ -61,6 +61,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
 # QCOM Hal
@@ -73,6 +74,22 @@ PRODUCT_PACKAGES += \
     libtilerenderer \
     libgenlock \
     libQcomUI
+
+# QCOM OMX
+PRODUCT_PACKAGES += \
+	libstagefrighthw \
+	libOmxCore \
+	libmm-omxcore \
+	libdivxdrmdecrypt \
+	libOmxVdec
+
+# QCOM OMX Video Encoding/Tests
+#PRODUCT_PACKAGES += \
+#	mm-vdev-omx-test \
+#	mm-video-driver-test \
+#	libOmxVenc \
+#	mm-venc-omx-test720p \
+#	mm-video-encdrv-test
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -194,7 +211,7 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/media_profiles.xml:/system/etc/media_profiles.xml \
     device/hp/tenderloin/vold.fstab:system/etc/vold.fstab \
     device/hp/tenderloin/makemulti.sh:makemulti.sh \
-    device/hp/tenderloin/prebuilt/boot/moboot.splash.Android_4.0.3.tga:moboot.splash.Android_4.0.3.tga
+    device/hp/tenderloin/prebuilt/boot/moboot.splash.Android_4.0.4.tga:moboot.splash.Android_4.0.4.tga
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
