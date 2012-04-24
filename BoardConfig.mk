@@ -93,6 +93,9 @@ BOARD_USES_CUSTOM_FSCK_MSDOS := true
 # Common Unix Printing System
 TARGET_USES_CUPS := true
 
+# Define kernel config for inline building
+TARGET_KERNEL_CONFIG := tenderloin_android_defconfig
+
 # Define Prebuilt kernel locations
 TARGET_PREBUILT_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
 

@@ -40,6 +40,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/boot_webos:system/bin/boot_webos
 
+# media minor check boot script
+PRODUCT_COPY_FILES += \
+    device/hp/tenderloin/prebuilt/etc/init.d/10check_media_minor:system/etc/init.d/10check_media_minor
+
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/hp/tenderloin/tenderloin-vendor.mk)
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
@@ -212,15 +216,6 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/vold.fstab:system/etc/vold.fstab \
     device/hp/tenderloin/makemulti.sh:makemulti.sh \
     device/hp/tenderloin/prebuilt/boot/moboot.splash.Android_4.0.4.tga:moboot.splash.Android_4.0.4.tga
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
 
 $(call inherit-product-if-exists, vendor/google/gapps.mk)
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
