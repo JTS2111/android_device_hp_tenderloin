@@ -215,15 +215,6 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/makemulti.sh:makemulti.sh \
     device/hp/tenderloin/prebuilt/boot/moboot.splash.Android_4.0.4.tga:moboot.splash.Android_4.0.4.tga
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
 $(call inherit-product-if-exists, vendor/google/gapps.mk)
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full_base.mk)
