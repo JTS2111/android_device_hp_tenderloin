@@ -55,6 +55,7 @@ on init
     insmod /system/lib/modules/tun.ko
     insmod /system/lib/modules/compat.ko
     insmod /system/lib/modules/cfg80211.ko
+    insmod /system/lib/modules/ath6kl_core.ko
 
     # Bandwidth accounting
     chmod 0666 /proc/net/xt_qtaguid/ctrl
