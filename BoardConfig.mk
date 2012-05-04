@@ -44,6 +44,7 @@ WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/ath6kl_sdio.ko"
 WIFI_DRIVER_MODULE_NAME          := "ath6kl_sdio"
 WIFI_EXT_MODULE_PATH             := "/system/lib/modules/ath6kl_core.ko"
 WIFI_EXT_MODULE_NAME             := "ath6kl_core"
+WIFI_EXT_MODULE_ARG              := "ath6kl_p2p=1"
 
 #Bluetooth
 BOARD_HAVE_BLUETOOTH := true
