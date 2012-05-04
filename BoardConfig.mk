@@ -42,6 +42,8 @@ WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WLAN_DEVICE                := ath6kl
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/ath6kl_sdio.ko"
 WIFI_DRIVER_MODULE_NAME          := "ath6kl_sdio"
+WIFI_EXT_MODULE_PATH             := "/system/lib/modules/ath6kl_core.ko"
+WIFI_EXT_MODULE_NAME             := "ath6kl_core"
 
 #Bluetooth
 BOARD_HAVE_BLUETOOTH := true
